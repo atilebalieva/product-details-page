@@ -1,9 +1,13 @@
 import React from "react";
+import { Routes } from "react-router-dom";
+import Navigation from "./components/nav/navigation";
 
 function App() {
   return (
-    <div className="App">
-      <div>HOME</div>
+    <div className="container mx-auto px-4">
+      <div>
+        <Navigation />
+      </div>
     </div>
   );
 }
