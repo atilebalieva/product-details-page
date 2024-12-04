@@ -8,10 +8,10 @@ export default function ProductPrice({ price }: { price: Price }) {
   return (
     <Badge className="text-sm" variant={"secondary"}>
       {price.discount_percentage > 0 ? (
-        <>
-          {formatPrice(price.sale_price)}{" "}
+        <div className="flex items-center gap-2">
+          <p>{formatPrice(price.sale_price)} </p>
           <span className="line-through text-neutral-400 text-xs">{formatPrice(price.list_price)}</span>
-        </>
+        </div>
       ) : (
         <>{formatPrice(price.list_price)}</>
       )}
