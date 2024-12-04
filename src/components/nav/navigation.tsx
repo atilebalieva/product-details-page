@@ -3,7 +3,7 @@ import { FaCartArrowDown } from "react-icons/fa";
 
 export default function Navigation() {
   return (
-    <nav className="h-20 w-full border flex items-center">
+    <nav className="h-20 w-full flex items-center container mx-auto px-4">
       <ul className="flex justify-between items-center w-full gap-10">
         <li className="w-48">
           <Link to="/" className="flex items-center">

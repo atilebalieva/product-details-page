@@ -9,7 +9,7 @@ const queryClient = new QueryClient();
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="container mx-auto px-4">
+      <div className="px-5">
         <div>
           <Navigation />
           <Dashboard />
@@ -23,5 +23,5 @@ function App() {
     </QueryClientProvider>
   );
 }
-
+/* container mx-auto px-4 */
 export default App;
