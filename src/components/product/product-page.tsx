@@ -1,3 +1,12 @@
+import { useParams } from "react-router-dom";
+import ProductDescription from "./product-description";
+
 export default function ProductPage() {
-  return <div>Product page</div>;
+  const { id } = useParams();
+
+  return (
+    <div>
+      <ProductDescription />
+    </div>
+  );
 }
