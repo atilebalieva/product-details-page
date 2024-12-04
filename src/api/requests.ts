@@ -19,6 +19,7 @@ export const fetchProductImages = async () => {
   const response = await axios.get("./data/product-images.json");
   return response.data;
 };
+
 export const fetchProductInventory = async () => {
   const response = await axios.get("./data/inventory.json");
   return response.data;
