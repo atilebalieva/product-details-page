@@ -12,8 +12,10 @@ export default function Dashboard() {
 
   if (loadingProducts || loadingImages || loadingPrices) return <Loader />;
 
-  const mergedProductsData = products?.map((product: Product) => {
-    const productImage = images.find((image: ImageUrl) => image.product_id === product.product_id)?.image_url;
+  if (productError || imagesError || priceError) return <div className="text-red-500">Something went wrong</div>;
+
+  const mergedProductsData: MergedProductsData[] = products.map((product: Product) => {
+    const productImage = images.find((image: ImageUrl) => image.product_id === product.product_id)?.image_url || "";
     const productPrice = prices.find((price: Price) => price.product_id === product.product_id);
     return { ...product, image: productImage, price: productPrice };
   });
@@ -21,23 +23,23 @@ export default function Dashboard() {
   /*   console.log(mergedProductsData); */
 
   return (
-    <main className=" bg-white rounded-md ">
-      <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-12 lg:grid-cols-3  container mx-auto px-4">
-        {mergedProductsData?.map((product: MergedProductsData) => (
+    <main className=" bg-white rounded-md py-6">
+      <div className="container mx-auto px-4 grid sm:grid-cols-1 md:grid-cols-2 gap-12 lg:grid-cols-3">
+        {mergedProductsData.map((product) => (
           <Link
-            className="py-2"
-            key={product.product_id}
+            to={`/products/${product.product_id}`}
             /*             to={`/products/${product.product_id}?id=${product.product_id}&title=${product.name}`}
              */
-            to={`/products/${product.product_id}`}
+            key={product.product_id}
+            className="block py-2 transition-transform hover:scale-105"
           >
             <img
-              className="rounded-md pb-2 w-[680px] h-[420px] object-cover"
               src={product.image}
               alt={product.product_id}
+              className="rounded-md pb-2 w-[680px] h-[420px] object-cover"
               loading="lazy"
             />
-            <div className="flex justify-between">
+            <div className="flex justify-between items-center">
               <div className="font-medium">
                 <h2>{product.name}</h2>
               </div>
