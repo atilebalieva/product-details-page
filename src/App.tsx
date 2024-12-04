@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import Navigation from "./components/nav/navigation";
-import ProductPage from "./components/product/product-page";
+import ProductPage from "./pages/product-page";
 import { QueryClient, QueryClientProvider } from "react-query";
 import Dashboard from "./pages/dashboard";
 
@@ -13,15 +13,13 @@ function App() {
         <div>
           <Navigation />
           <Dashboard />
-          {/*         <Routes>
-          <Route path="/product/:id" element={<ProductPage />}></Route>
-        </Routes>
- */}{" "}
-          {/* <ProductPage /> */}
+          <Routes>
+            <Route path="/" element={<Dashboard />}></Route>
+            <Route path="/products/:product_id" element={<ProductPage />}></Route>
+          </Routes>{" "}
         </div>
       </div>
     </QueryClientProvider>
   );
 }
-/* container mx-auto px-4 */
 export default App;

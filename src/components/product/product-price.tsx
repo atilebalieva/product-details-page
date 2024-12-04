@@ -3,7 +3,6 @@ import { Badge } from "../ui/badge";
 import { Price } from "../../lib/infer-type";
 
 export default function ProductPrice({ price }: { price: Price }) {
-  console.log(price);
   if (!price) return null;
 
   return (
