@@ -12,7 +12,6 @@ function App() {
       <div className="px-5">
         <div>
           <Navigation />
-          <Dashboard />
           <Routes>
             <Route path="/" element={<Dashboard />}></Route>
             <Route path="/products/:product_id" element={<ProductPage />}></Route>
