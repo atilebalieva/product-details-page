@@ -64,7 +64,9 @@ body {
     "Open Sans", "Helvetica Neue", sans-serif;
   min-height: 100vh;
   background-color: rgb(237, 240, 245);
-  color: rgb(82 82 91);
+  color: #525252;
+  letter-spacing: 0.025em;
+  line-height: 1.75rem;
 }
 
 * {
