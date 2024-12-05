@@ -2,6 +2,8 @@ import formatPrice from "./../../lib/format-price";
 import { Badge } from "../ui/badge";
 import ProductPrice from "./product-price";
 import ProductDetails from "./product-details";
+import AddCart from "../cart/add-cart";
+import { Button } from "../ui/button";
 
 export default function Product() {
   const price = {
@@ -74,24 +76,26 @@ export default function Product() {
             )}
           </div>
           {/* Stars/Rating */}
-          <p className="text-xs">
+          <div className="text-xs mb-7">
             The Voyager Hoodie is for the explorer at heart. Its durable fabric and roomy pockets are perfect for those
             who are always searching for the next adventure.
-          </p>
+          </div>
           {/* Available Colors */}
-          <div>
-            <h2 className="text-xs text-neutral-400 mb-3">Available sizes</h2>
+          <div className="mb-7">
+            <h2 className="text-xs text-neutral-600 mb-3">Available sizes</h2>
             <div className="flex gap-3">
-              <p className="flex items-center justify-center w-10 h-8 border text-xs uppercase font-medium text-black">
+              <Button variant={"secondary"} className="w-11 rounded uppercase text-xs text-neutral-900 bg-white border">
                 xs
-              </p>
-              <p className="flex items-center justify-center w-10 h-8 border text-xs uppercase font-medium text-black">
+              </Button>
+              <Button variant={"secondary"} className="w-11 rounded uppercase text-xs text-neutral-900 bg-white border">
                 s
-              </p>
+              </Button>
             </div>
           </div>
-
-          {/* Quantity/Add to cart */}
+          <div className="mb-6">
+            <h2 className="text-xs text-neutral-600 mb-3">Quantity</h2>
+            <AddCart />
+          </div>
           <div>
             {productInfo.map((info) => (
               <ProductDetails title={info.title} description={info.description} key={info.product_id} />
