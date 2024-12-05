@@ -9,7 +9,7 @@ const queryClient = new QueryClient();
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="px-5">
+      <div className="px-8">
         <div>
           <Navigation />
           <Routes>

@@ -7,7 +7,7 @@ export default function Navigation() {
       <ul className="flex justify-between items-center w-full gap-10">
         <li className="w-48">
           <Link to="/" className="flex items-center">
-            <img src="./images/logo.png" alt="logo" className="w-9 h-9" />
+            <img src="../images/logo.png" alt="logo" className="w-9 h-9" />
             <p className="text-xl font-semibold text-black">StyleNest</p>
           </Link>
         </li>
