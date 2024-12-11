@@ -7,11 +7,17 @@ export type Product = {
   product_id: string;
 };
 
-export type ImageUrl = {
+export type SingleImageUrl = {
   color: string;
   image_url: string;
   product_id: string;
 };
+
+export type ImagesColorsUrl = {
+  product_id: string;
+  color: string;
+  image_url: string;
+}[];
 
 export type Price = {
   color: string;
@@ -26,6 +32,20 @@ export type Price = {
   stock: number;
 };
 
+export type ProductInfo = {
+  product_id: string;
+  title: string;
+  description: string[];
+}[];
+
+export type ProductReviews = {
+  product_id: string;
+  user_id: string;
+  rating: number;
+  content: string;
+  created_at: string;
+}[];
+
 export type MergedProductsData = {
   category: string;
   collection: string;
@@ -35,4 +55,17 @@ export type MergedProductsData = {
   product_id: string;
   image: string;
   price: Price;
+}[];
+
+export type MergedSingleProductData = {
+  category: string;
+  collection: string;
+  created_at: string;
+  description: string;
+  name: string;
+  product_id: string;
+  image: string;
+  price: Price;
+  productInfo: ProductInfo;
+  reviews: ProductReviews;
 };

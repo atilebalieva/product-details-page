@@ -1,23 +1,40 @@
 import { useParams } from "react-router-dom";
-import Product from "../components/product/product";
+import Loader from "../components/loader";
+import { ImagesColorsUrl, MergedSingleProductData, Price, Product } from "@/lib/infer-type";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "../components/ui/button";
+import AddCart from "@/components/cart/add-cart";
+import ProductDetails from "@/components/product/product-details";
+import { useAllProductData } from "../api/product-data";
 import { useQuery } from "react-query";
+import { fetchProducts } from "../api/requests";
 
 export default function ProductPage() {
-  /*   const { product_id } = useParams();
+  const { product_id } = useParams();
 
   const { data: products, isLoading: loadingProducts, error: productError } = useQuery(["products"], fetchProducts);
-  const { data: images, isLoading: loadingImages, error: imagesError } = useQuery(["images"], fetchProductImages);
-  const { data: prices, isLoading: loadingPrices, error: priceError } = useQuery(["price"], fetchProductInventory);
 
-  if (loadingProducts || loadingImages || loadingPrices) return <Loader />;
+  console.log(products);
 
-  if (productError || imagesError || priceError) return <div className="text-red-500">Something went wrong</div>;
+  /*   const { productsQuery, imagesQuery, pricesQuery, reviewsQuery, productInfoQuery } = useAllProductData();
 
-  const mergedProductsData: MergedProductsData[] = products.map((product: Product) => {
-    const productImage = images.find((image: ImageUrl) => image.product_id === product.product_id)?.image_url || "";
+  const { data: products, isLoading: loadingProducts, error: productError } = productsQuery;
+  const { data: images, isLoading: loadingImages, error: imagesError } = imagesQuery;
+  const { data: prices, isLoading: loadingPrices, error: priceError } = pricesQuery;
+  const { data: reviews, isLoading: loadingReviews, error: reviewsError } = reviewsQuery;
+  const { data: productInfo, isLoading: loadingproductInfo, error: productInfoError } = productInfoQuery;
+
+  if (loadingProducts || loadingImages || loadingPrices || loadingReviews || loadingproductInfo) return <Loader />;
+
+  if (productError || imagesError || priceError || reviewsError || productInfoError)
+    return <div className="text-red-500">Something went wrong</div>; */
+
+  /*   const mergedProductsData: MergedSingleProductData = products.map((product: Product) => {
+    const productImage =
+      images.find((image: ImagesColorsUrl) => image.product_id === product.product_id)?.image_url || "";
     const productPrice = prices.find((price: Price) => price.product_id === product.product_id);
     return { ...product, image: productImage, price: productPrice };
-  }) */
+  }); */
 
-  return <Product />;
+  return <div>single product</div>;
 }
