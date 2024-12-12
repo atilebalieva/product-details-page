@@ -7,32 +7,27 @@ import AddCart from "@/components/cart/add-cart";
 import ProductDetails from "../components/product/product-details";
 import { useAllProductData } from "../api/product-data";
 import { useQuery } from "react-query";
-import { fetchProducts, fetchSingleProduct } from "../api/requests";
+import { fetchSingleProduct } from "../api/requests";
 
 export default function ProductPage() {
-  const { id } = useParams();
+  const { product_id } = useParams<{ product_id?: string }>();
 
-  const { data, isLoading, error } = useQuery(["products"], fetchSingleProduct(id));
+  const {
+    data: product,
+    isLoading: isLoadingProduct,
+    error: errorOnProduct,
+  } = useQuery({
+    enabled: !!product_id,
+    queryKey: ["product", product_id],
+    queryFn: () => {
+      return fetchSingleProduct(product_id as string);
+    },
+  });
 
-  /*   const { productsQuery, imagesQuery, pricesQuery, reviewsQuery, productInfoQuery } = useAllProductData();
+  if (isLoadingProduct) return <Loader />;
+  if (errorOnProduct) return <div className="text-red-500">Something went wrong</div>;
 
-  const { data: products, isLoading: loadingProducts, error: productError } = productsQuery;
-  const { data: images, isLoading: loadingImages, error: imagesError } = imagesQuery;
-  const { data: prices, isLoading: loadingPrices, error: priceError } = pricesQuery;
-  const { data: reviews, isLoading: loadingReviews, error: reviewsError } = reviewsQuery;
-  const { data: productInfo, isLoading: loadingproductInfo, error: productInfoError } = productInfoQuery;
-
-  if (loadingProducts || loadingImages || loadingPrices || loadingReviews || loadingproductInfo) return <Loader />;
-
-  if (productError || imagesError || priceError || reviewsError || productInfoError)
-    return <div className="text-red-500">Something went wrong</div>; */
-
-  /*   const mergedProductsData: MergedSingleProductData = products.map((product: Product) => {
-    const productImage =
-      images.find((image: ImagesColorsUrl) => image.product_id === product.product_id)?.image_url || "";
-    const productPrice = prices.find((price: Price) => price.product_id === product.product_id);
-    return { ...product, image: productImage, price: productPrice };
-  }); */
+  console.log("DATA FROM API", product);
 
   return <div>{/* <ProductDetails /> */}</div>;
 }

@@ -1,3 +1,4 @@
+import { Product } from "@/lib/infer-type";
 import axios from "axios";
 
 export const fetchProducts = async () => {
@@ -5,8 +6,8 @@ export const fetchProducts = async () => {
   return response.data;
 };
 
-export const fetchSingleProduct = async (id: string | number) => {
-  const response = await axios.get("./data/products.json");
+export const fetchSingleProduct = async (id: string) => {
+  const response = await axios.get("/data/products.json");
 
   const product = response.data.find((item: { product_id: string }) => item.product_id === id);
 

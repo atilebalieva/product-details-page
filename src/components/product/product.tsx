@@ -98,7 +98,7 @@ export default function Product() {
           </div>
           <div>
             {productInfo.map((info) => (
-              <ProductDetails title={info.title} description={info.description} key={info.product_id} />
+              <ProductDetails />
             ))}
           </div>
         </div>
