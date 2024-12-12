@@ -4,17 +4,15 @@ import { ImagesColorsUrl, MergedSingleProductData, Price, Product } from "@/lib/
 import { Badge } from "@/components/ui/badge";
 import { Button } from "../components/ui/button";
 import AddCart from "@/components/cart/add-cart";
-import ProductDetails from "@/components/product/product-details";
+import ProductDetails from "../components/product/product-details";
 import { useAllProductData } from "../api/product-data";
 import { useQuery } from "react-query";
-import { fetchProducts } from "../api/requests";
+import { fetchProducts, fetchSingleProduct } from "../api/requests";
 
 export default function ProductPage() {
-  const { product_id } = useParams();
+  const { id } = useParams();
 
-  const { data: products, isLoading: loadingProducts, error: productError } = useQuery(["products"], fetchProducts);
-
-  console.log(products);
+  const { data, isLoading, error } = useQuery(["products"], fetchSingleProduct(id));
 
   /*   const { productsQuery, imagesQuery, pricesQuery, reviewsQuery, productInfoQuery } = useAllProductData();
 
@@ -36,5 +34,5 @@ export default function ProductPage() {
     return { ...product, image: productImage, price: productPrice };
   }); */
 
-  return <div>single product</div>;
+  return <div>{/* <ProductDetails /> */}</div>;
 }

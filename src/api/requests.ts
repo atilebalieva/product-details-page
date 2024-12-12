@@ -5,12 +5,20 @@ export const fetchProducts = async () => {
   return response.data;
 };
 
+export const fetchSingleProduct = async (id: string | number) => {
+  const response = await axios.get("./data/products.json");
+
+  const product = response.data.find((item: { product_id: string }) => item.product_id === id);
+
+  return product;
+};
+
 export const fetchProductReviews = async () => {
   const response = await axios.get("./data/product-reviews.json");
   return response.data;
 };
 
-export const fetchProductInfo = async () => {
+export const fetchProductDetails = async () => {
   const response = await axios.get("./data/product-info.json");
   return response.data;
 };
