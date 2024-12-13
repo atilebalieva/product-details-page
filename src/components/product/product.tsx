@@ -96,11 +96,6 @@ export default function Product() {
             <h2 className="text-xs text-neutral-600 mb-3">Quantity</h2>
             <AddCart />
           </div>
-          <div>
-            {productInfo.map((info) => (
-              <ProductDetails title={info.title} description={info.description} key={info.product_id} />
-            ))}
-          </div>
         </div>
       </div>
     </section>
