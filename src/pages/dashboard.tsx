@@ -21,16 +21,13 @@ export default function Dashboard() {
     return { ...product, image: productImage, price: productPrice };
   });
 
-  /*   console.log(mergedProductsData); */
-
   return (
     <main className=" bg-white rounded-md py-6">
       <div className="container mx-auto px-4 grid sm:grid-cols-1 md:grid-cols-2 gap-12 lg:grid-cols-3">
         {mergedProductsData.map((product) => (
           <Link
-            to={`/products/${product.product_id}`}
-            /*             to={`/products/${product.product_id}?id=${product.product_id}&title=${product.name}`}
-             */
+            /*            to={`/products/${product.product_id}`} */
+            to={`/products/${product.product_id}?id=${product.product_id}&title=${product.name}`}
             key={product.product_id}
             className="block py-2 transition-transform hover:scale-105"
           >
@@ -46,6 +43,16 @@ export default function Dashboard() {
               </div>
               <div>
                 <ProductPrice price={product.price} />
+                {/*  <Badge className="text-sm" variant={"secondary"}>
+                  {price.discount_percentage > 0 ? (
+                    <div className="flex items-center gap-2">
+                      <p>{formatPrice(price.sale_price)} </p>
+                      <span className="line-through text-neutral-400 text-xs">{formatPrice(price.list_price)}</span>
+                    </div>
+                  ) : (
+                    <>{formatPrice(price.list_price)}</>
+                  )}
+                </Badge> */}
               </div>
             </div>
           </Link>

@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 import {
   fetchProductImages,
-  fetchProductDetails,
+  fetchProductsDetails,
   fetchProductInventory,
   fetchProductReviews,
   fetchProducts,
@@ -17,7 +17,7 @@ export const useAllProductData = () => {
   const imagesQuery = useApiData("images", fetchProductImages);
   const pricesQuery = useApiData("price", fetchProductInventory);
   const reviewsQuery = useApiData("reviews", fetchProductReviews);
-  const productDetailsQuery = useApiData("productDetails", fetchProductDetails);
+  const productDetailsQuery = useApiData("productDetails", fetchProductsDetails);
 
   return {
     productsQuery,
@@ -35,7 +35,7 @@ const fetchFunctions = {
   images: fetchProductImages,
   price: fetchProductInventory,
   reviews: fetchProductReviews,
-  productDetails: fetchProductDetails,
+  productDetails: fetchProductsDetails,
 };
 
 export const useDynamicApi = (key: FetchFunctionsKeys) => useApiData(key, fetchFunctions[key]);

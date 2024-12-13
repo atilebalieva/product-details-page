@@ -69,3 +69,9 @@ export type MergedSingleProductData = {
   productInfo: ProductInfo;
   reviews: ProductReviews;
 };
+
+export type ProductDetailsType = {
+  product_id: string;
+  title: string;
+  description: string[];
+};

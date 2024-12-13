@@ -5,9 +5,18 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "../components/ui/button";
 import AddCart from "@/components/cart/add-cart";
 import ProductDetails from "../components/product/product-details";
-import { useAllProductData } from "../api/product-data";
+
 import { useQuery } from "react-query";
-import { fetchSingleProduct } from "../api/requests";
+import {
+  DataOfProductDescription,
+  DataOfProductDetails,
+  DataOfProductImages,
+  DataOfProductInventory,
+} from "../api/requests";
+import ProductPrice from "../components/product/product-price";
+import ProductSize from "../components/product/product-size";
+import Commercial from "../components/commercial";
+import ProductShowCase from "@/components/product/product-show-case";
 
 export default function ProductPage() {
   const { product_id } = useParams<{ product_id?: string }>();
@@ -16,18 +25,49 @@ export default function ProductPage() {
     data: product,
     isLoading: isLoadingProduct,
     error: errorOnProduct,
-  } = useQuery({
-    enabled: !!product_id,
-    queryKey: ["product", product_id],
-    queryFn: () => {
-      return fetchSingleProduct(product_id as string);
-    },
-  });
+  } = DataOfProductDescription(product_id as string);
 
-  if (isLoadingProduct) return <Loader />;
-  if (errorOnProduct) return <div className="text-red-500">Something went wrong</div>;
+  const {
+    data: productImages,
+    isLoading: isLoadingProductImages,
+    error: errorOnProductImages,
+  } = DataOfProductImages(product_id as string);
 
-  console.log("DATA FROM API", product);
+  const {
+    data: productInventory,
+    isLoading: isLoadingInventory,
+    error: errorOnProductInventory,
+  } = DataOfProductInventory(product_id as string);
 
-  return <div>{/* <ProductDetails /> */}</div>;
+  const {
+    data: productDetails,
+    isLoading: isLoadingDetails,
+    error: errorOnProductDetails,
+  } = DataOfProductDetails(product_id as string);
+
+  if (isLoadingProduct || isLoadingProductImages || isLoadingInventory || isLoadingDetails) return <Loader />;
+  if (errorOnProduct || errorOnProductImages || errorOnProductInventory || errorOnProductDetails)
+    return <div className="text-red-500">Something went wrong</div>;
+
+  console.log(productDetails);
+
+  return (
+    <section className=" bg-white rounded-md py-6">
+      <div className="container mx-auto px-4 flex justify-between gap-5">
+        <div className="w-[50%] border">
+          <ProductShowCase variants={productImages} />
+        </div>
+        <div className="w-[50%]">
+          <h1 className="text-3xl font-semibold text-black mb-3">{product.name}</h1>
+          <div className="mb-1">
+            <ProductPrice price={productInventory[0]} />
+          </div>
+          <div className="text-xs mb-7">{product.description}</div>
+          <div className="mb-7">{productInventory[0]?.size && <ProductSize inventory={productInventory} />}</div>
+          <ProductDetails details={productDetails} />
+        </div>
+      </div>
+      <Commercial />
+    </section>
+  );
 }
