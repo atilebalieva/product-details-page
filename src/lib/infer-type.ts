@@ -14,9 +14,9 @@ export type SingleImageUrl = {
 };
 
 export type ImagesColorsUrl = {
-  product_id: string;
   color: string;
   image_url: string;
+  product_id: string;
 }[];
 
 export type Price = {
