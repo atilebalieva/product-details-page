@@ -1,7 +1,4 @@
-import formatPrice from "./../../lib/format-price";
 import { Badge } from "../ui/badge";
-import ProductPrice from "./product-price";
-import ProductDetails from "./product-details";
 import AddCart from "../cart/add-cart";
 import { Button } from "../ui/button";
 

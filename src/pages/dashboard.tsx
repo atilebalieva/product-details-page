@@ -26,8 +26,7 @@ export default function Dashboard() {
       <div className="container mx-auto px-4 grid sm:grid-cols-1 md:grid-cols-2 gap-12 lg:grid-cols-3">
         {mergedProductsData.map((product) => (
           <Link
-            /*            to={`/products/${product.product_id}`} */
-            to={`/products/${product.product_id}?id=${product.product_id}&title=${product.name}`}
+            to={`/products/${product.product_id}?id=${product.product_id}&title=${product.name}&type=${product.price.color}`}
             key={product.product_id}
             className="block py-2 transition-transform hover:scale-105"
           >

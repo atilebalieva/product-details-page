@@ -1,12 +1,7 @@
 import { useParams } from "react-router-dom";
 import Loader from "../components/loader";
-import { ImagesColorsUrl, MergedSingleProductData, Price, Product } from "@/lib/infer-type";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "../components/ui/button";
 import AddCart from "@/components/cart/add-cart";
 import ProductDetails from "../components/product/product-details";
-
-import { useQuery } from "react-query";
 import {
   DataOfProductDescription,
   DataOfProductDetails,
@@ -14,9 +9,9 @@ import {
   DataOfProductInventory,
 } from "../api/requests";
 import ProductPrice from "../components/product/product-price";
-import ProductSize from "../components/product/product-size";
+import ProductShowCase from "../components/product/product-showcase";
 import Commercial from "../components/commercial";
-import ProductShowCase from "@/components/product/product-show-case";
+import ProductSize from "../components/product/product-size";
 
 export default function ProductPage() {
   const { product_id } = useParams<{ product_id?: string }>();
@@ -49,11 +44,9 @@ export default function ProductPage() {
   if (errorOnProduct || errorOnProductImages || errorOnProductInventory || errorOnProductDetails)
     return <div className="text-red-500">Something went wrong</div>;
 
-  console.log(productDetails);
-
   return (
     <section className=" bg-white rounded-md py-6">
-      <div className="container mx-auto px-4 flex justify-between gap-5">
+      <div className="container mx-auto px-4 flex justify-between gap-8">
         <div className="w-[50%] border">
           <ProductShowCase variants={productImages} />
         </div>

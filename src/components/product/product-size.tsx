@@ -1,6 +1,5 @@
-import { Price } from "@/lib/infer-type";
-import { Button } from "../ui/button";
-import ProductSizeButton from "./prosuct-size-button";
+import { Price } from "../../lib/infer-type";
+import ProductSizeButton from "./product-size-button";
 const { nanoid } = require("nanoid");
 
 export default function ProductSize({ inventory }: { inventory: Price[] }) {
