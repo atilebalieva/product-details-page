@@ -16,23 +16,6 @@ export default function ProductShowCase({ variants }: { variants: ImagesColorsUr
     api?.scrollTo(index);
   };
 
-  /*   useEffect(() => {
-    if (!api) return;
-
-    const handleSlidesInView = (e: any) => {
-      const firstSlideInView = e.slidesInView()[0];
-
-      if (firstSlideInView !== activeThumbnail) {
-        setActiveThumbnail(firstSlideInView);
-      }
-    };
-
-    api.on("slidesInView", handleSlidesInView);
-
-    return () => {
-      api.off("slidesInView", handleSlidesInView);
-    };
-  }, [api, activeThumbnail]); */
   useEffect(() => {
     if (!api) {
       return;

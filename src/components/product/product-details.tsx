@@ -4,7 +4,7 @@ const { nanoid } = require("nanoid");
 
 export default function ProductDetails({ details }: { details: ProductDetailsType[] }) {
   return (
-    <Accordion type="single" collapsible>
+    <Accordion type="multiple" defaultValue={details.map((_, index) => `item${index}`)}>
       {details.map((detail, index) => {
         return (
           <AccordionItem value={`item${index}`} key={nanoid()}>
