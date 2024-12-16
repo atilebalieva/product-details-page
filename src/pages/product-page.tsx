@@ -12,6 +12,8 @@ import ProductPrice from "../components/product/product-price";
 import ProductShowCase from "../components/product/product-showcase";
 import Commercial from "../components/commercial";
 import ProductSize from "../components/product/product-size";
+import ProductPick from "../components/product/product-pick";
+import { Price } from "@/lib/infer-type";
 
 export default function ProductPage() {
   const { product_id } = useParams<{ product_id?: string }>();
@@ -46,16 +48,20 @@ export default function ProductPage() {
 
   return (
     <section className=" bg-white rounded-md py-6">
-      <div className="container mx-auto px-4 flex justify-between gap-8">
-        <div className="w-[50%] border">
+      <div className="container mx-auto px-4 flex flex-col lg:flex-row justify-between gap-8 lg:gap-12">
+        <div className="lg:w-[50%] w-full">
           <ProductShowCase variants={productImages} />
         </div>
-        <div className="w-[50%]">
+        <div className="lg:w-[50%] w-full ">
           <h1 className="text-3xl font-semibold text-black mb-3">{product.name}</h1>
           <div className="mb-1">
             <ProductPrice price={productInventory[0]} />
           </div>
           <div className="text-xs mb-7">{product.description}</div>
+          <div className="mb-7">
+            <h2 className="text-xs text-neutral-600 mb-3">Available colors</h2>
+            <ProductPick productInventory={productInventory} />
+          </div>
           <div className="mb-7">{productInventory[0]?.size && <ProductSize inventory={productInventory} />}</div>
           <ProductDetails details={productDetails} />
         </div>

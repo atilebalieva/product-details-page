@@ -1,23 +1,16 @@
 import { ImagesColorsUrl } from "@/lib/infer-type";
-import {
-  Carousel,
-  CarouselApi,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "../../components/ui/carousel";
+import { Carousel, CarouselApi, CarouselContent, CarouselItem } from "../../components/ui/carousel";
 import { useEffect, useState } from "react";
-import { useParams, useSearchParams } from "react-router-dom";
 import { cn } from "../../lib/utils";
+import { useSearchParams } from "react-router-dom";
 
 const { nanoid } = require("nanoid");
 
 export default function ProductShowCase({ variants }: { variants: ImagesColorsUrl }) {
   const [api, setApi] = useState<CarouselApi>();
   const [activeThumbnail, setActiveThumbnail] = useState([0]);
-  const searchParams = new URLSearchParams(window.location.search);
-  const selectedColor = searchParams.get("type") || variants[0].color;
+  const [searchParams] = useSearchParams();
+  const selectedColor = searchParams.get("type");
 
   const updatePreview = (index: number) => {
     api?.scrollTo(index);
@@ -50,7 +43,6 @@ export default function ProductShowCase({ variants }: { variants: ImagesColorsUr
     });
   }, [activeThumbnail]);
 
-  console.log(activeThumbnail);
   return (
     <Carousel setApi={setApi} opts={{ loop: true }}>
       <CarouselContent>
