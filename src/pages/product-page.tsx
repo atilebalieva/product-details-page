@@ -13,7 +13,6 @@ import ProductShowCase from "../components/product/product-showcase";
 import Commercial from "../components/commercial";
 import ProductSize from "../components/product/product-size";
 import ProductPick from "../components/product/product-pick";
-import { Price } from "@/lib/infer-type";
 
 export default function ProductPage() {
   const { product_id } = useParams<{ product_id?: string }>();
