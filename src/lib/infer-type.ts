@@ -39,11 +39,11 @@ export type ProductInfo = {
 }[];
 
 export type ProductReviews = {
-  product_id: string;
-  user_id: string;
-  rating: number;
   content: string;
   created_at: string;
+  product_id: string;
+  rating: number;
+  user_id: string;
 }[];
 
 export type MergedProductsData = {
