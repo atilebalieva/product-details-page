@@ -19,6 +19,13 @@ export const fetchProductReviews = async () => {
   return response.data;
 };
 
+export const fetchSingleProductReviews = async (id: string) => {
+  const response = await axios.get("/data/product-reviews.json");
+  const productDetails = response.data.filter((item: { product_id: string }) => item.product_id === id);
+
+  return productDetails;
+};
+
 export const fetchProductsDetails = async () => {
   const response = await axios.get("./data/product-info.json");
   return response.data;
@@ -92,6 +99,16 @@ export const DataOfProductDetails = (id: string) => {
     queryKey: ["productDetails", id],
     queryFn: () => {
       return fetchSingleProductDetails(id);
+    },
+  });
+};
+
+export const DataOfProductReviews = (id: string) => {
+  return useQuery({
+    enabled: !!id,
+    queryKey: ["productReviews", id],
+    queryFn: () => {
+      return fetchSingleProductReviews(id);
     },
   });
 };
