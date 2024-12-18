@@ -21,21 +21,26 @@ function isDarkColor(colorName: string): boolean {
   return luminance < 0.5;
 }
 
-export default function ProductColors({
-  id,
-  title,
-  type,
-  color,
-}: {
-  id: string;
-  title: string;
-  type: string;
-  color: string;
-}) {
+export default function ProductColors({ color, type }: { color: string; type: string }) {
   const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
-  const selectedColor = searchParams.get("type");
   const checkmarkColor = isDarkColor(color) ? "text-white" : "dark-gray";
+
+  const [searchParams] = useSearchParams();
+
+  const selectedColor = searchParams.get("type");
+  const id = searchParams.get("id");
+  const title = searchParams.get("title");
+  const image_url = searchParams.get("image");
+  const size = searchParams.get("size") || null;
+  const price = searchParams.get("price");
+
+  console.log({ id, title, price, selectedColor, size, image_url });
+
+  function generateLink() {
+    return size
+      ? `/products/${id}?id=${id}&title=${title}&price=${price}&type=${color}&size=${size}&image=${image_url}`
+      : `/products/${id}?id=${id}&title=${title}&price=${price}&type=${color}&image=${image_url}`;
+  }
 
   return (
     <div
@@ -43,7 +48,7 @@ export default function ProductColors({
       className={cn(
         "w-8 h-8 rounded-full cursor-pointer transition-all duration-300 ease-in-out hover:opacity-75 border flex items-center justify-center",
       )}
-      onClick={() => navigate(`/products/${id}?id=${id}&title=${title}&type=${type}`, { replace: false })}
+      onClick={() => navigate(generateLink(), { replace: false })}
     >
       {selectedColor === type && <FaCheck className={cn(checkmarkColor, "text-sm")} />}
     </div>

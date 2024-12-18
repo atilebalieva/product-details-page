@@ -1,23 +1,28 @@
-import { ProductDetailsType, SingleImageUrl, Price } from "../../lib/infer-type";
+import { Product, SingleImageUrl, Price } from "../../lib/infer-type";
 import { useCartStore } from "../../lib/client-store";
 import { Button } from "../ui/button";
 import { Minus, Plus } from "lucide-react";
 import { useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
-export default function AddCart({
-  productName,
-  productImg,
-  productInventory,
-}: {
-  productName: ProductDetailsType;
-  productImg: SingleImageUrl;
-  productInventory: Price;
-}) {
+export default function AddCart({ productInventory }: { productInventory: Price }) {
   const { cart, addToCart } = useCartStore();
   const [quantity, setQuantity] = useState(1);
 
-  console.log(productName, productImg, productInventory);
+  const [searchParams] = useSearchParams();
+
+  const selectedColor = searchParams.get("type");
+  const id = searchParams.get("id");
+  const title = searchParams.get("title");
+  const image_url = searchParams.get("image");
+  const size = searchParams.get("size");
+  const price = parseFloat(searchParams.get("price")!);
+
   console.log("CART", cart);
+
+  /*   if (!id || !title || image_url || !selectedColor) {
+    console.log("ERROR: PRODUCT NOT FOUND");
+  } */
 
   return (
     <>
@@ -48,12 +53,12 @@ export default function AddCart({
         className="bg-indigo-700 rounded-sm w-full"
         onClick={() =>
           addToCart({
-            product_id: productName.product_id,
-            productName: productName.name,
-            color: productInventory.color,
+            product_id: id,
+            productName: title,
+            color: selectedColor,
             quantity: quantity,
-            img: productImg.image_url,
-            price: productInventory.list_price,
+            img: image_url,
+            price: price,
             size: productInventory?.size,
           })
         }

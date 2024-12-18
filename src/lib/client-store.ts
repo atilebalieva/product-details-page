@@ -1,13 +1,13 @@
 import { create } from "zustand";
 
 export type CartItem = {
-  product_id: string;
-  productName: string;
-  color: string;
+  product_id: string | null;
+  productName: string | null;
+  color: string | null;
   quantity: number;
-  img: string;
+  img: string | null;
   price: number;
-  size?: string;
+  size?: string | null;
 };
 
 export type CartState = {

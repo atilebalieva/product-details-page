@@ -83,7 +83,7 @@ export default function ProductPage() {
               <ProductPick productInventory={productInventory} />
             </div>
             <div className="mb-7">{productInventory[0]?.size && <ProductSize inventory={productInventory} />}</div>
-            <AddCart productName={product} productImg={productImages[0]} productInventory={productInventory[0]} />
+            <AddCart productInventory={productInventory[0]} />
             <ProductDetails details={productDetails} />
           </div>
         </div>

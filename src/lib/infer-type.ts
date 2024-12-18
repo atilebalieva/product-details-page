@@ -55,7 +55,7 @@ export type MergedProductsData = {
   product_id: string;
   image: string;
   price: Price;
-}[];
+};
 
 export type MergedSingleProductData = {
   category: string;

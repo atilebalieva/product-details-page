@@ -9,21 +9,10 @@ export default function ProductPick({ productInventory }: { productInventory: Pr
     <div className="flex gap-2">
       {uniqueColor.length > 1 ? (
         uniqueColor.map((item, index) => (
-          <ProductColors
-            id={productInventory[index].product_id}
-            title={productInventory[index].product_id}
-            type={uniqueColor[index]}
-            color={uniqueColor[index]}
-            key={nanoid()}
-          />
+          <ProductColors type={uniqueColor[index]} color={uniqueColor[index]} key={nanoid()} />
         ))
       ) : (
-        <ProductColors
-          id={productInventory[0].product_id}
-          title={productInventory[0].product_id}
-          type={productInventory[0].color}
-          color={productInventory[0].color}
-        />
+        <ProductColors type={productInventory[0].color} color={productInventory[0].color} />
       )}
     </div>
   );

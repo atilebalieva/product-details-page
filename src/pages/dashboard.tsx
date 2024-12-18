@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 import { fetchProductImages, fetchProductInventory, fetchProducts } from "../api/requests";
 import { Link } from "react-router-dom";
-import { MergedProductsData, Price, Product, SingleImageUrl } from "../lib/infer-type";
+import { MergedProductsData, MergedSingleProductData, Price, Product, SingleImageUrl } from "../lib/infer-type";
 import ProductPrice from "../components/product/product-price";
 import Loader from "../components/loader";
 
@@ -14,19 +14,32 @@ export default function Dashboard() {
 
   if (productError || imagesError || priceError) return <div className="text-red-500">Something went wrong</div>;
 
-  const mergedProductsData: MergedProductsData = products.map((product: Product) => {
+  const mergedProductsData: MergedProductsData[] = products.map((product: Product) => {
     const productImage =
       images.find((image: SingleImageUrl) => image.product_id === product.product_id)?.image_url || "";
     const productPrice = prices.find((price: Price) => price.product_id === product.product_id);
     return { ...product, image: productImage, price: productPrice };
   });
 
+  console.log(mergedProductsData[0]);
+
+  function generateLink(product: MergedProductsData) {
+    if (product.price.discount_percentage > 0 && product.price.size !== null)
+      return `/products/${product.product_id}?id=${product.product_id}&title=${product.name}&price=${product.price.sale_price}&type=${product.price.color}&image=${product.image}`;
+    else if (product.price.discount_percentage === null && product.price.size !== null)
+      return `/products/${product.product_id}?id=${product.product_id}&title=${product.name}&price=${product.price.list_price}&type=${product.price.color}&image=${product.image}`;
+    else if (product.price.discount_percentage === null && product.price.size === null)
+      return `/products/${product.product_id}?id=${product.product_id}&title=${product.name}&price=${product.price.list_price}&type=${product.price.color}&size=${product.price.size}&image=${product.image}`;
+    else
+      return `/products/${product.product_id}?id=${product.product_id}&title=${product.name}&price=${product.price.sale_price}&type=${product.price.color}&size=${product.price.size}&image=${product.image}`;
+  }
+
   return (
     <main className=" bg-white rounded-md py-6">
       <div className="container mx-auto px-4 grid sm:grid-cols-1 md:grid-cols-2 gap-12 lg:grid-cols-3">
         {mergedProductsData.map((product) => (
           <Link
-            to={`/products/${product.product_id}?id=${product.product_id}&title=${product.name}&type=${product.price.color}`}
+            to={generateLink(product)}
             key={product.product_id}
             className="block py-2 transition-transform hover:scale-105"
           >
