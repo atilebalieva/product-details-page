@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { FaCartArrowDown } from "react-icons/fa";
+import CartDrawer from "../cart/cart-drawer";
 
 export default function Navigation() {
   return (
@@ -21,7 +21,7 @@ export default function Navigation() {
         </li>
         <li>
           <Link to="">
-            <FaCartArrowDown className="text-black" />
+            <CartDrawer />
           </Link>
         </li>
       </ul>

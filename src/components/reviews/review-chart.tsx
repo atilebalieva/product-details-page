@@ -18,8 +18,6 @@ export default function ReviewChart({ productReviews }: { productReviews: Produc
       }
     });
 
-    console.log(ratingValues);
-
     return ratingValues.map((rating) => (rating / totalReviews) * 100);
   }, [productReviews]);
 

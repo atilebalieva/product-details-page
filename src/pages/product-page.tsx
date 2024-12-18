@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import Loader from "../components/loader";
-import AddCart from "@/components/cart/add-cart";
+import AddCart from "../components/cart/add-cart";
 import ProductDetails from "../components/product/product-details";
 import {
   DataOfProductDescription,
@@ -52,6 +52,7 @@ export default function ProductPage() {
 
   if (isLoadingProduct || isLoadingProductImages || isLoadingInventory || isLoadingDetails || isLoadingReviews)
     return <Loader />;
+
   if (
     errorOnProduct ||
     errorOnProductImages ||
@@ -82,11 +83,14 @@ export default function ProductPage() {
               <ProductPick productInventory={productInventory} />
             </div>
             <div className="mb-7">{productInventory[0]?.size && <ProductSize inventory={productInventory} />}</div>
+            <AddCart productInventory={productInventory[0]} />
             <ProductDetails details={productDetails} />
           </div>
         </div>
-        <div>
+        <div className="mb-9">
           <ReviewsSection productReviews={productReviews} />
+        </div>
+        <div>
           <Commercial />
         </div>
       </div>
